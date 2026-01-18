@@ -13,7 +13,8 @@ export const ScaleVisual: React.FC<ScaleVisualProps> = ({ leftItems, rightItems,
   const rightWeight = Math.max(0, rightItems.reduce((s, i) => s + i.weight, 0));
   
   const diff = leftWeight - rightWeight;
-  const rotation = Math.max(-25, Math.min(25, diff * 0.4));
+  // Đảo dấu: bên nặng hơn phải đi XUỐNG (rotation âm)
+  const rotation = Math.max(-25, Math.min(25, -diff * 0.4));
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
