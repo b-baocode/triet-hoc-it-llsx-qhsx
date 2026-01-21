@@ -13,9 +13,9 @@ export const ScaleVisual: React.FC<ScaleVisualProps> = ({ leftItems, rightItems,
   const rightWeight = Math.max(0, rightItems.reduce((s, i) => s + i.weight, 0));
   
   const diff = leftWeight - rightWeight;
-  // diff > 0: trái nặng hơn -> xoay âm -> trái xuống
-  // diff < 0: phải nặng hơn -> xoay dương -> phải xuống  
-  const rotation = Math.max(-25, Math.min(25, diff * 0.4));
+  // Khi trái nặng hơn (diff > 0) → rotation ÂM → beam xoay ngược chiều kim đồng hồ → trái xuống
+  // Khi phải nặng hơn (diff < 0) → rotation DƯƠNG → beam xoay thuận chiều kim đồng hồ → phải xuống
+  const rotation = Math.max(-25, Math.min(25, -diff * 0.4));
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ export const ScaleVisual: React.FC<ScaleVisualProps> = ({ leftItems, rightItems,
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, 'left')}
           className="absolute -left-16 -bottom-32 w-48 h-48 flex flex-col items-center transition-transform duration-1000"
-          style={{ transform: `rotate(${-rotation}deg) translateY(${-rotation * 2}px)` }}
+          style={{ transform: `rotate(${-rotation}deg) translateY(${rotation * 2}px)` }}
         >
            <div className="w-1 bg-slate-500 h-16 shadow-lg"></div>
            <div className={`w-full h-24 bg-orange-950/20 border-b-8 border-x-4 border-orange-500 rounded-b-[4rem] flex flex-wrap gap-1.5 p-3 items-end justify-center relative transition-all ${leftItems.length > 0 ? 'shadow-[0_20px_40px_rgba(249,115,22,0.3)]' : 'border-dashed border-orange-500/30'}`}>
@@ -82,7 +82,7 @@ export const ScaleVisual: React.FC<ScaleVisualProps> = ({ leftItems, rightItems,
           onDragOver={handleDragOver}
           onDrop={(e) => handleDrop(e, 'right')}
           className="absolute -right-16 -bottom-32 w-48 h-48 flex flex-col items-center transition-transform duration-1000"
-          style={{ transform: `rotate(${-rotation}deg) translateY(${rotation * 2}px)` }}
+          style={{ transform: `rotate(${-rotation}deg) translateY(${-rotation * 2}px)` }}
         >
            <div className="w-1 bg-slate-500 h-16 shadow-lg"></div>
            <div className={`w-full h-24 bg-blue-950/20 border-b-8 border-x-4 border-blue-500 rounded-b-[4rem] flex flex-wrap gap-1.5 p-3 items-end justify-center relative transition-all ${rightItems.length > 0 ? 'shadow-[0_20px_40px_rgba(59,130,246,0.3)]' : 'border-dashed border-blue-500/30'}`}>

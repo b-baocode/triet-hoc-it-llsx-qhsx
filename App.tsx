@@ -170,7 +170,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Supply Pool Section */}
-        <section className="mt-12 bg-slate-900/60 border border-slate-800 p-8 rounded-[3rem] backdrop-blur-xl shadow-2xl relative">
+        <section className="mt-32 bg-slate-900/60 border border-slate-800 p-8 rounded-[3rem] backdrop-blur-xl shadow-2xl relative">
            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-800 border border-slate-700 px-6 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-400">
              Supply Pool (Kéo các thành phần lên cân)
            </div>
